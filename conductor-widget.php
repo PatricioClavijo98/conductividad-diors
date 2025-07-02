@@ -185,7 +185,7 @@ class Elementor_Conductor_Calc_Widget extends \Elementor\Widget_Base {
 
             const voltage = parseFloat(document.getElementById('voltage').value);
             const connectionType = document.getElementById('connection_type').value;
-            const carga = parseFloat(document.getElementById('load').value);
+            const carga = parseFloat(document.getElementById('carga').value);
             const loadUnit = document.getElementById('load_unit').value;
             const conductorType = document.getElementById('conductor_type').value;
             const poleCount = parseInt(document.getElementById('pole_count').value);
