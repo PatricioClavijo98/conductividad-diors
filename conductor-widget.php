@@ -129,8 +129,8 @@ class Elementor_Conductor_Calc_Widget extends \Elementor\Widget_Base {
                 <option value="trifasica" selected>Trifásica</option>
             </select>
 
-            <label for="load">Carga:</label>
-            <input type="number" id="load" name="load" value="10" step="any">
+            <label for="carga">Carga:</label>
+            <input type="number" id="carga" name="carga" value="10" step="any">
 
             <label for="load_unit">Unidad de Carga:</label>
             <select id="load_unit" name="load_unit">
@@ -185,7 +185,7 @@ class Elementor_Conductor_Calc_Widget extends \Elementor\Widget_Base {
 
             const voltage = parseFloat(document.getElementById('voltage').value);
             const connectionType = document.getElementById('connection_type').value;
-            const load = parseFloat(document.getElementById('load').value);
+            const carga = parseFloat(document.getElementById('load').value);
             const loadUnit = document.getElementById('load_unit').value;
             const conductorType = document.getElementById('conductor_type').value;
             const poleCount = parseInt(document.getElementById('pole_count').value);
@@ -199,12 +199,12 @@ class Elementor_Conductor_Calc_Widget extends \Elementor\Widget_Base {
             const sqrt3 = Math.sqrt(3);
 
             if (loadUnit === 'A') {
-                currentAmps = load;
+                currentAmps = carga;
                 powerWatts = connectionType === 'trifasica' ? sqrt3 * voltage * currentAmps : voltage * currentAmps;
             } else {
-                if (loadUnit === 'kW') powerWatts = load * 1000;
-                if (loadUnit === 'HP') powerWatts = load * 746;
-                if (loadUnit === 'CV') powerWatts = load * 735.5;
+                if (loadUnit === 'kW') powerWatts = carga * 1000;
+                if (loadUnit === 'HP') powerWatts = carga * 746;
+                if (loadUnit === 'CV') powerWatts = carga * 735.5;
                 currentAmps = connectionType === 'trifasica' ? powerWatts / (sqrt3 * voltage) : powerWatts / voltage;
             }
 
