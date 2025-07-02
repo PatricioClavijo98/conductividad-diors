@@ -129,6 +129,9 @@ class Elementor_Conductor_Calc_Widget extends \Elementor\Widget_Base {
                 <option value="trifasica" selected>Trifásica</option>
             </select>
 
+            <label for="load">Carga:</label>
+            <input type="number" id="load" name="load" value="10" step="any">
+
             <label for="load_unit">Unidad de Carga:</label>
             <select id="load_unit" name="load_unit">
                 <option value="A">Amperios</option>
@@ -240,9 +243,9 @@ class Elementor_Conductor_Calc_Widget extends \Elementor\Widget_Base {
                 <h4>Conductores compatibles:</h4>`;
 
             if (validConductors.length === 0) {
-                html += `<p style="color: red;">No se encontraron conductores compatibles con ${poleCount} polos para instalación en "${installationType}".</p>`;
+                html += `<p style="color: red;">No se encontraron conductores compatibles con ${poleCount} polos para instalación en "${installationType === 'canio' ? 'caño' : installationType}".</p>`;
             } else {
-                html += '<ul>' + validConductors.map(c => `<li>${c.type} - ${c.num_conductors}x${c.section} mm² (Máx: ${c.max_current[installationType]} A)</li>`).join('') + '</ul>';
+                html += '<ul>' + validConductors.map(c => `<li>${c.type} - ${c.num_conductors}x${c.section} mm² (Máx: ${c.max_current[installationType]} A, instalación: ${installationType === 'canio' ? 'caño' : installationType})</li>`).join('') + '</ul>';
             }
 
             document.getElementById('conductor-result').innerHTML = html;
